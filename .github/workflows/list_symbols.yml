@@ -34,11 +34,11 @@ jobs:
               syms = data.get('symbols', data if isinstance(data, list) else [])
               print('Total:', len(syms))
               for s in syms:
-                  name = s.get('name', s) if isinstance(s, dict) else s
-                  if 'NDX' in str(name).upper() or 'NAS' in str(name).upper() or 'US100' in str(name).upper() or 'USTEC' in str(name).upper():
-                      print('>>> MATCH:', name)
+                  print('SYM:', s)
+              print('--- RAW ---')
+              print(r2.text[:2000])
           except Exception as e:
               print('Parse error:', e)
-              print(r2.text[:1000])
+              print(r2.text[:2000])
           PYEOF
           python3 list.py
