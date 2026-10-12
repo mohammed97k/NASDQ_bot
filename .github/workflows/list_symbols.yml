@@ -1,13 +1,14 @@
-name: List Symbols
+
+name: Add Symbol to TickerAll
 
 on:
   workflow_dispatch:
 
 jobs:
-  list:
+  add:
     runs-on: ubuntu-latest
     steps:
-      - name: List available symbols
+      - name: Add NDXUSD
         env:
           TICKERALL_API_KEY: ${{ secrets.TICKERALL_API_KEY }}
           MT5_PASSWORD: ${{ secrets.MT5_PASSWORD }}
@@ -15,7 +16,7 @@ jobs:
           MT5_ACCOUNT: ${{ secrets.MT5_ACCOUNT }}
         run: |
           pip install requests
-          cat > list.py << 'PYEOF'
+          cat > add.py << 'PYEOF'
           import os, requests, json
           KEY = os.environ['TICKERALL_API_KEY']
           SRV = os.environ['MT5_SERVER']
@@ -24,21 +25,29 @@ jobs:
           BASE = 'https://api.tickerall.com'
           H = {'Authorization': 'Bearer ' + KEY, 'Content-Type': 'application/json'}
           r = requests.post(BASE + '/v1/sessions', headers=H, json={'broker':'mt5','server':SRV,'account':int(ACC) if ACC.isdigit() else ACC,'password':PWD}, timeout=30)
-          print('Session:', r.status_code)
           aid = r.json().get('accountId')
           print('AccountId:', aid)
-          r2 = requests.get(BASE + '/v1/accounts/' + aid + '/symbols', headers={'Authorization': 'Bearer ' + KEY}, timeout=60)
-          print('Symbols status:', r2.status_code)
-          try:
-              data = r2.json()
-              syms = data.get('symbols', data if isinstance(data, list) else [])
-              print('Total:', len(syms))
-              for s in syms:
-                  print('SYM:', s)
-              print('--- RAW ---')
-              print(r2.text[:2000])
-          except Exception as e:
-              print('Parse error:', e)
-              print(r2.text[:2000])
+
+          # Try different endpoints to add symbol
+          endpoints = [
+              ('POST', '/v1/accounts/' + aid + '/symbols', {'symbol': 'NDXUSD'}),
+              ('POST', '/v1/accounts/' + aid + '/watch',   {'symbol': 'NDXUSD'}),
+              ('POST', '/v1/accounts/' + aid + '/symbols/watch', {'symbol': 'NDXUSD'}),
+              ('PUT',  '/v1/accounts/' + aid + '/symbols/NDXUSD', {}),
+          ]
+          for method, path, body in endpoints:
+              url = BASE + path
+              try:
+                  if method == 'POST':
+                      rr = requests.post(url, headers=H, json=body, timeout=30)
+                  else:
+                      rr = requests.put(url, headers=H, json=body, timeout=30)
+                  print(method, path, '->', rr.status_code, rr.text[:200])
+              except Exception as e:
+                  print(method, path, 'ERR:', e)
+
+          # Recheck symbols
+          r2 = requests.get(BASE + '/v1/accounts/' + aid + '/symbols', headers=H, timeout=60)
+          print('After:', r2.text[:500])
           PYEOF
-          python3 list.py
+          python3 add.py
