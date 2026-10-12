@@ -2,7 +2,7 @@ name: NAS100 Signals Bot
 
 on:
   schedule:
-    - cron: '*/5 * * * 1-5'
+    - cron: '0 * * * *'
   workflow_dispatch:
 
 concurrency:
@@ -15,22 +15,20 @@ permissions:
 jobs:
   run-strategy:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     steps:
-      - name: Check out repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
       - name: Install dependencies
-        run: |
-          pip install pandas numpy requests pytz
+        run: pip install pandas numpy requests pytz
 
-      - name: Run Strategy Bot
+      - name: Loop every 5 min for 55 min
         env:
           TICKERALL_API_KEY: ${{ secrets.TICKERALL_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -39,14 +37,16 @@ jobs:
           MT5_PASSWORD: ${{ secrets.MT5_PASSWORD }}
           MT5_SERVER: ${{ secrets.MT5_SERVER }}
           MT5_ACCOUNT: ${{ secrets.MT5_ACCOUNT }}
-        run: python -u ict_bot.py
-
-      - name: Commit state file
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git add state.json || true
-          git diff --staged --quiet || git commit -m "Update state [skip ci]"
-          for i in 1 2 3; do
-            git pull --rebase origin main && git push origin HEAD:main && break || sleep 5
+          END=$((SECONDS + 3300))
+          i=0
+          while [ $SECONDS -lt $END ]; do
+            i=$((i+1))
+            echo "═══ Cycle $i — $(date -u) ═══"
+            python -u ict_bot.py || echo "Bot error, continuing..."
+            if [ -f state.json ]; then
+              git add state.json || true
+              git diff --staged --quiet || (git -c user.name="bot" -c user.email="bot@local" commit -m "s [skip ci]" && git push) || true
+            fi
+            sleep 300
           done
