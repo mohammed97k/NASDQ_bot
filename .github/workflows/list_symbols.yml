@@ -1,14 +1,13 @@
-
-name: Add Symbol to TickerAll
+name: Refresh TickerAll Session
 
 on:
   workflow_dispatch:
 
 jobs:
-  add:
+  refresh:
     runs-on: ubuntu-latest
     steps:
-      - name: Add NDXUSD
+      - name: Refresh
         env:
           TICKERALL_API_KEY: ${{ secrets.TICKERALL_API_KEY }}
           MT5_PASSWORD: ${{ secrets.MT5_PASSWORD }}
@@ -16,38 +15,46 @@ jobs:
           MT5_ACCOUNT: ${{ secrets.MT5_ACCOUNT }}
         run: |
           pip install requests
-          cat > add.py << 'PYEOF'
-          import os, requests, json
+          cat > refresh.py << 'PYEOF'
+          import os, requests
           KEY = os.environ['TICKERALL_API_KEY']
           SRV = os.environ['MT5_SERVER']
           ACC = os.environ['MT5_ACCOUNT']
           PWD = os.environ['MT5_PASSWORD']
           BASE = 'https://api.tickerall.com'
           H = {'Authorization': 'Bearer ' + KEY, 'Content-Type': 'application/json'}
-          r = requests.post(BASE + '/v1/sessions', headers=H, json={'broker':'mt5','server':SRV,'account':int(ACC) if ACC.isdigit() else ACC,'password':PWD}, timeout=30)
-          aid = r.json().get('accountId')
+
+          # 1. List existing sessions
+          r = requests.get(BASE + '/v1/sessions', headers=H, timeout=30)
+          print('List sessions:', r.status_code, r.text[:500])
+
+          # 2. Try to delete all
+          try:
+              sessions = r.json()
+              if isinstance(sessions, dict):
+                  sessions = sessions.get('sessions', [sessions])
+              if isinstance(sessions, list):
+                  for s in sessions:
+                      sid = s.get('id') if isinstance(s, dict) else s
+                      if sid:
+                          rd = requests.delete(BASE + '/v1/sessions/' + str(sid), headers=H, timeout=30)
+                          print('Delete', sid, '->', rd.status_code, rd.text[:200])
+          except Exception as e:
+              print('Del err:', e)
+
+          # 3. Wait
+          import time
+          time.sleep(5)
+
+          # 4. Create new session
+          r2 = requests.post(BASE + '/v1/sessions', headers=H, json={'broker':'mt5','server':SRV,'account':int(ACC) if ACC.isdigit() else ACC,'password':PWD}, timeout=30)
+          print('New session:', r2.status_code, r2.text[:300])
+          aid = r2.json().get('accountId')
           print('AccountId:', aid)
 
-          # Try different endpoints to add symbol
-          endpoints = [
-              ('POST', '/v1/accounts/' + aid + '/symbols', {'symbol': 'NDXUSD'}),
-              ('POST', '/v1/accounts/' + aid + '/watch',   {'symbol': 'NDXUSD'}),
-              ('POST', '/v1/accounts/' + aid + '/symbols/watch', {'symbol': 'NDXUSD'}),
-              ('PUT',  '/v1/accounts/' + aid + '/symbols/NDXUSD', {}),
-          ]
-          for method, path, body in endpoints:
-              url = BASE + path
-              try:
-                  if method == 'POST':
-                      rr = requests.post(url, headers=H, json=body, timeout=30)
-                  else:
-                      rr = requests.put(url, headers=H, json=body, timeout=30)
-                  print(method, path, '->', rr.status_code, rr.text[:200])
-              except Exception as e:
-                  print(method, path, 'ERR:', e)
-
-          # Recheck symbols
-          r2 = requests.get(BASE + '/v1/accounts/' + aid + '/symbols', headers=H, timeout=60)
-          print('After:', r2.text[:500])
+          # 5. Check symbols
+          time.sleep(3)
+          r3 = requests.get(BASE + '/v1/accounts/' + aid + '/symbols', headers=H, timeout=60)
+          print('Symbols:', r3.text[:500])
           PYEOF
-          python3 add.py
+          python3 refresh.py
