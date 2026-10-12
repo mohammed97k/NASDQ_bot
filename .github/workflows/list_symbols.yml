@@ -1,0 +1,44 @@
+name: List Symbols
+
+on:
+  workflow_dispatch:
+
+jobs:
+  list:
+    runs-on: ubuntu-latest
+    steps:
+      - name: List available symbols
+        env:
+          TICKERALL_API_KEY: ${{ secrets.TICKERALL_API_KEY }}
+          MT5_PASSWORD: ${{ secrets.MT5_PASSWORD }}
+          MT5_SERVER: ${{ secrets.MT5_SERVER }}
+          MT5_ACCOUNT: ${{ secrets.MT5_ACCOUNT }}
+        run: |
+          pip install requests
+          cat > list.py << 'PYEOF'
+          import os, requests, json
+          KEY = os.environ['TICKERALL_API_KEY']
+          SRV = os.environ['MT5_SERVER']
+          ACC = os.environ['MT5_ACCOUNT']
+          PWD = os.environ['MT5_PASSWORD']
+          BASE = 'https://api.tickerall.com'
+          H = {'Authorization': 'Bearer ' + KEY, 'Content-Type': 'application/json'}
+          r = requests.post(BASE + '/v1/sessions', headers=H, json={'broker':'mt5','server':SRV,'account':int(ACC) if ACC.isdigit() else ACC,'password':PWD}, timeout=30)
+          print('Session:', r.status_code)
+          aid = r.json().get('accountId')
+          print('AccountId:', aid)
+          r2 = requests.get(BASE + '/v1/accounts/' + aid + '/symbols', headers={'Authorization': 'Bearer ' + KEY}, timeout=60)
+          print('Symbols status:', r2.status_code)
+          try:
+              data = r2.json()
+              syms = data.get('symbols', data if isinstance(data, list) else [])
+              print('Total:', len(syms))
+              for s in syms:
+                  name = s.get('name', s) if isinstance(s, dict) else s
+                  if 'NDX' in str(name).upper() or 'NAS' in str(name).upper() or 'US100' in str(name).upper() or 'USTEC' in str(name).upper():
+                      print('>>> MATCH:', name)
+          except Exception as e:
+              print('Parse error:', e)
+              print(r2.text[:1000])
+          PYEOF
+          python3 list.py
