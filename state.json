@@ -1,10 +1,8 @@
 {
   "active_trade": null,
   "last_entry_time": "2026-10-13T16:04:19.638154+00:00",
-  "trade_count_today": 1,
-  "last_day": "2026-10-13",
-  "models_done_today": [
-    "Lunch"
-  ],
+  "trade_count_today": 0,
+  "last_day": "2026-10-14",
+  "models_done_today": [],
   "last_session_alert": null
 }
