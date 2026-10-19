@@ -20,13 +20,15 @@ STATE_FILE = "state.json"
 NY_TZ = ZoneInfo("America/New_York")
 MOSUL_TZ = ZoneInfo("Asia/Baghdad")
 BASE_URL = "https://api.tickerall.com"
-SERVER_OFFSET_HOURS = 3
+SERVER_OFFSET_HOURS = 0
+ALERT_COOLDOWN_MINUTES = 60
 
 MULT = 1.0
 ATR_PERIOD = 14
 MIN_SL_PTS = 50.0
 MAX_SL_PTS = 180.0
 COOLDOWN_NORMAL = 20
+COOLDOWN_STRONG = 5
 MAX_TRADES_PER_DAY = 3
 MAX_BARS_TRADE = 60
 TP1_R = 1.0
@@ -43,7 +45,7 @@ FVG_EXPIRY = 15
 OB_EXPIRY = 15
 MSS_EXPIRY = 25
 SWEEP_EXPIRY = 25
-STALE_DATA_MINUTES = 240
+STALE_DATA_MINUTES = 360
 
 
 def fmt_mosul(dt_utc):
@@ -563,10 +565,10 @@ def main():
             save_state(state)
             return
 
-        today = now_ny.date().isoformat()
-        if state["last_day"] != today:
-            state["trade_count_today"] = 0
-            state["models_done_today"] = []
+        today = nowmodels_ny.date().isoformat()
+        if state["last_day"]_d != today:
+            state["trade_count_today"] = 0one
+            state["_today"] = []
             state["last_day"] = today
 
         print("Opening session...")
@@ -605,6 +607,7 @@ def main():
         minutes_old = (now_utc - last_candle_time).total_seconds() / 60
         print("Candle age: " + str(round(minutes_old, 1)) + " min")
         if minutes_old > STALE_DATA_MINUTES:
+            print("Stale data - skipping")
             save_state(state)
             return
 
@@ -619,6 +622,7 @@ def main():
 
         model = sig["model"]
         if model in state["models_done_today"]:
+            print("Model already used today: " + model)
             save_state(state)
             return
 
