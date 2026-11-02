@@ -83,20 +83,6 @@
       false,
       false
     ],
-    "aBarI": [
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "aLast": [
-      -10000,
-      -10000,
-      -10000,
-      -10000,
-      -10000
-    ],
     "aTr": [
       0,
       0,
@@ -118,7 +104,35 @@
       "",
       ""
     ],
-    "last_bar": "2026-11-02 19:00:00+00:00"
+    "aLastT": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "aEntryT": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "aPend": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "aPendT": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "_v": 2
   },
   "DOW": {
     "cntTotal": 0,
@@ -204,20 +218,6 @@
       false,
       false
     ],
-    "aBarI": [
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "aLast": [
-      -10000,
-      -10000,
-      -10000,
-      -10000,
-      -10000
-    ],
     "aTr": [
       0,
       0,
@@ -239,6 +239,34 @@
       "",
       ""
     ],
-    "last_bar": "2026-11-02 19:00:00+00:00"
+    "aLastT": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "aEntryT": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "aPend": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "aPendT": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "_v": 2
   }
 }
