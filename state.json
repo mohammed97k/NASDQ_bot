@@ -135,7 +135,7 @@
     "_v": 2
   },
   "DOW": {
-    "cntTotal": 0,
+    "cntTotal": 1,
     "cntTP1": 0,
     "cntTP2": 0,
     "cntTP3": 0,
@@ -160,49 +160,49 @@
       null,
       null,
       null,
-      null
+      52121.2
     ],
     "aSL": [
       null,
       null,
       null,
       null,
-      null
+      52174.672886917564
     ],
     "aAnc": [
       null,
       null,
       null,
       null,
-      null
+      52126.5
     ],
     "aT1": [
       null,
       null,
       null,
       null,
-      null
+      52021.2
     ],
     "aT2": [
       null,
       null,
       null,
       null,
-      null
+      51921.2
     ],
     "aT3": [
       null,
       null,
       null,
       null,
-      null
+      51821.2
     ],
     "aRk": [
       null,
       null,
       null,
       null,
-      null
+      53.47288691756694
     ],
     "aH1": [
       false,
@@ -223,7 +223,7 @@
       0,
       0,
       0,
-      0
+      1
     ],
     "aWn": [
       0,
@@ -237,7 +237,7 @@
       "",
       "",
       "",
-      ""
+      "08:28 PM"
     ],
     "aLastT": [
       null,
@@ -258,14 +258,14 @@
       false,
       false,
       false,
-      false
+      true
     ],
     "aPendT": [
       null,
       null,
       null,
       null,
-      null
+      "2026-11-10T17:28:42.593416+00:00"
     ],
     "_v": 2
   }
