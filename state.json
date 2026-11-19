@@ -1,6 +1,6 @@
 {
   "NASDAQ": {
-    "cntTotal": 1,
+    "cntTotal": 0,
     "cntTP1": 0,
     "cntTP2": 0,
     "cntTP3": 0,
@@ -18,56 +18,56 @@
       false,
       false,
       false,
-      true
+      false
     ],
     "aE": [
       null,
       null,
       null,
       null,
-      27063.254999999997
+      null
     ],
     "aSL": [
       null,
       null,
       null,
       null,
-      26981.86178997436
+      null
     ],
     "aAnc": [
       null,
       null,
       null,
       null,
-      27035.12
+      null
     ],
     "aT1": [
       null,
       null,
       null,
       null,
-      27163.254999999997
+      null
     ],
     "aT2": [
       null,
       null,
       null,
       null,
-      27263.254999999997
+      null
     ],
     "aT3": [
       null,
       null,
       null,
       null,
-      27363.254999999997
+      null
     ],
     "aRk": [
       null,
       null,
       null,
       null,
-      81.39321002563884
+      null
     ],
     "aH1": [
       false,
@@ -88,7 +88,7 @@
       0,
       0,
       0,
-      1
+      0
     ],
     "aWn": [
       0,
@@ -102,7 +102,7 @@
       "",
       "",
       "",
-      "11:47 PM"
+      ""
     ],
     "aLastT": [
       null,
@@ -123,14 +123,14 @@
       false,
       false,
       false,
-      true
+      false
     ],
     "aPendT": [
       null,
       null,
       null,
       null,
-      "2026-11-18T20:47:59.194204+00:00"
+      null
     ],
     "_v": 2
   },
