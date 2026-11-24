@@ -1,6 +1,6 @@
 {
   "NASDAQ": {
-    "cntTotal": 0,
+    "cntTotal": 2,
     "cntTP1": 0,
     "cntTP2": 0,
     "cntTP3": 0,
@@ -22,52 +22,52 @@
     ],
     "aE": [
       null,
+      26235.245000000003,
       null,
       null,
-      null,
-      null
+      26235.245000000003
     ],
     "aSL": [
       null,
+      26292.87172564548,
       null,
       null,
-      null,
-      null
+      26292.87172564548
     ],
     "aAnc": [
       null,
+      26238.5,
       null,
       null,
-      null,
-      null
+      26238.5
     ],
     "aT1": [
       null,
+      26135.245000000003,
       null,
       null,
-      null,
-      null
+      26135.245000000003
     ],
     "aT2": [
       null,
+      26035.245000000003,
       null,
       null,
-      null,
-      null
+      26035.245000000003
     ],
     "aT3": [
       null,
+      25935.245000000003,
       null,
       null,
-      null,
-      null
+      25935.245000000003
     ],
     "aRk": [
       null,
+      57.62672564547756,
       null,
       null,
-      null,
-      null
+      57.62672564547756
     ],
     "aH1": [
       false,
@@ -85,10 +85,10 @@
     ],
     "aTr": [
       0,
+      1,
       0,
       0,
-      0,
-      0
+      1
     ],
     "aWn": [
       0,
@@ -99,10 +99,10 @@
     ],
     "aTim": [
       "",
+      "05:31 PM",
       "",
       "",
-      "",
-      ""
+      "05:31 PM"
     ],
     "aLastT": [
       null,
@@ -120,22 +120,22 @@
     ],
     "aPend": [
       false,
+      true,
       false,
       false,
-      false,
-      false
+      true
     ],
     "aPendT": [
       null,
+      "2026-11-24T14:31:56.882761+00:00",
       null,
       null,
-      null,
-      null
+      "2026-11-24T14:31:56.882761+00:00"
     ],
     "_v": 2
   },
   "DOW": {
-    "cntTotal": 0,
+    "cntTotal": 1,
     "cntTP1": 0,
     "cntTP2": 0,
     "cntTP3": 0,
@@ -156,49 +156,49 @@
       false
     ],
     "aE": [
-      null,
+      49401.850000000006,
       null,
       null,
       null,
       null
     ],
     "aSL": [
-      null,
+      49519.556482736334,
       null,
       null,
       null,
       null
     ],
     "aAnc": [
-      null,
+      49468.3,
       null,
       null,
       null,
       null
     ],
     "aT1": [
-      null,
+      49301.850000000006,
       null,
       null,
       null,
       null
     ],
     "aT2": [
-      null,
+      49201.850000000006,
       null,
       null,
       null,
       null
     ],
     "aT3": [
-      null,
+      49101.850000000006,
       null,
       null,
       null,
       null
     ],
     "aRk": [
-      null,
+      117.70648273632833,
       null,
       null,
       null,
@@ -219,7 +219,7 @@
       false
     ],
     "aTr": [
-      0,
+      1,
       0,
       0,
       0,
@@ -233,7 +233,7 @@
       0
     ],
     "aTim": [
-      "",
+      "05:31 PM",
       "",
       "",
       "",
@@ -254,14 +254,14 @@
       null
     ],
     "aPend": [
-      false,
+      true,
       false,
       false,
       false,
       false
     ],
     "aPendT": [
-      null,
+      "2026-11-24T14:31:56.882761+00:00",
       null,
       null,
       null,
