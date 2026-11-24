@@ -1,6 +1,6 @@
 {
   "NASDAQ": {
-    "cntTotal": 2,
+    "cntTotal": 0,
     "cntTP1": 0,
     "cntTP2": 0,
     "cntTP3": 0,
@@ -22,183 +22,48 @@
     ],
     "aE": [
       null,
-      26235.245000000003,
-      null,
-      null,
-      26235.245000000003
-    ],
-    "aSL": [
-      null,
-      26291.887128185823,
-      null,
-      null,
-      26291.887128185823
-    ],
-    "aAnc": [
-      null,
-      26238.5,
-      null,
-      null,
-      26238.5
-    ],
-    "aT1": [
-      null,
-      26135.245000000003,
-      null,
-      null,
-      26135.245000000003
-    ],
-    "aT2": [
-      null,
-      26035.245000000003,
-      null,
-      null,
-      26035.245000000003
-    ],
-    "aT3": [
-      null,
-      25935.245000000003,
-      null,
-      null,
-      25935.245000000003
-    ],
-    "aRk": [
-      null,
-      56.642128185820184,
-      null,
-      null,
-      56.642128185820184
-    ],
-    "aH1": [
-      false,
-      false,
-      false,
-      false,
-      false
-    ],
-    "aH2": [
-      false,
-      false,
-      false,
-      false,
-      false
-    ],
-    "aTr": [
-      0,
-      1,
-      0,
-      0,
-      1
-    ],
-    "aWn": [
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "aTim": [
-      "",
-      "06:23 PM",
-      "",
-      "",
-      "06:23 PM"
-    ],
-    "aLastT": [
-      null,
-      null,
-      null,
-      null,
-      null
-    ],
-    "aEntryT": [
-      null,
-      null,
-      null,
-      null,
-      null
-    ],
-    "aPend": [
-      false,
-      true,
-      false,
-      false,
-      true
-    ],
-    "aPendT": [
-      null,
-      "2026-11-24T15:23:21.793782+00:00",
-      null,
-      null,
-      "2026-11-24T15:23:21.793782+00:00"
-    ],
-    "_v": 2
-  },
-  "DOW": {
-    "cntTotal": 1,
-    "cntTP1": 0,
-    "cntTP2": 0,
-    "cntTP3": 0,
-    "cntSL": 0,
-    "cntPts": 0.0,
-    "aOn": [
-      false,
-      false,
-      false,
-      false,
-      false
-    ],
-    "aLong": [
-      false,
-      false,
-      false,
-      false,
-      false
-    ],
-    "aE": [
-      49401.850000000006,
       null,
       null,
       null,
       null
     ],
     "aSL": [
-      49519.054246133295,
+      null,
       null,
       null,
       null,
       null
     ],
     "aAnc": [
-      49468.3,
+      null,
       null,
       null,
       null,
       null
     ],
     "aT1": [
-      49301.850000000006,
+      null,
       null,
       null,
       null,
       null
     ],
     "aT2": [
-      49201.850000000006,
+      null,
       null,
       null,
       null,
       null
     ],
     "aT3": [
-      49101.850000000006,
+      null,
       null,
       null,
       null,
       null
     ],
     "aRk": [
-      117.20424613328942,
+      null,
       null,
       null,
       null,
@@ -219,7 +84,7 @@
       false
     ],
     "aTr": [
-      1,
+      0,
       0,
       0,
       0,
@@ -233,7 +98,7 @@
       0
     ],
     "aTim": [
-      "06:23 PM",
+      "",
       "",
       "",
       "",
@@ -254,14 +119,149 @@
       null
     ],
     "aPend": [
-      true,
+      false,
       false,
       false,
       false,
       false
     ],
     "aPendT": [
-      "2026-11-24T15:23:21.793782+00:00",
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "_v": 2
+  },
+  "DOW": {
+    "cntTotal": 0,
+    "cntTP1": 0,
+    "cntTP2": 0,
+    "cntTP3": 0,
+    "cntSL": 0,
+    "cntPts": 0.0,
+    "aOn": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "aLong": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "aE": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "aSL": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "aAnc": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "aT1": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "aT2": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "aT3": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "aRk": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "aH1": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "aH2": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "aTr": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "aWn": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "aTim": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "aLastT": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "aEntryT": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "aPend": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "aPendT": [
+      null,
       null,
       null,
       null,
